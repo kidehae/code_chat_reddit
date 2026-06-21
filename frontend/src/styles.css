@@ -1,0 +1,136 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-surface: var(--surface);
+  --color-surface-foreground: var(--surface-foreground);
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.75rem;
+  /* Reddit Light */
+  --background: oklch(0.965 0.005 240); /* #DAE0E6-ish */
+  --surface: oklch(1 0 0); /* #FFFFFF */
+  --surface-foreground: oklch(0.18 0.01 250);
+  --foreground: oklch(0.18 0.01 250);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.01 250);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.01 250);
+  --primary: oklch(0.66 0.22 35); /* Reddit Orange-Red #FF4500 */
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.95 0.005 240);
+  --secondary-foreground: oklch(0.2 0.01 250);
+  --muted: oklch(0.95 0.005 240);
+  --muted-foreground: oklch(0.5 0.01 250);
+  --accent: oklch(0.95 0.02 35);
+  --accent-foreground: oklch(0.66 0.22 35);
+  --destructive: oklch(0.6 0.22 25);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.9 0.005 240);
+  --input: oklch(0.9 0.005 240);
+  --ring: oklch(0.66 0.22 35);
+}
+
+.dark {
+  /* Reddit Dark */
+  --background: oklch(0.13 0.002 240); /* #030303-ish */
+  --surface: oklch(0.205 0.002 240); /* #1A1A1B */
+  --surface-foreground: oklch(0.96 0.003 240);
+  --foreground: oklch(0.96 0.003 240);
+  --card: oklch(0.205 0.002 240);
+  --card-foreground: oklch(0.96 0.003 240);
+  --popover: oklch(0.205 0.002 240);
+  --popover-foreground: oklch(0.96 0.003 240);
+  --primary: oklch(0.7 0.22 35);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.25 0.005 240);
+  --secondary-foreground: oklch(0.96 0.003 240);
+  --muted: oklch(0.25 0.005 240);
+  --muted-foreground: oklch(0.7 0.01 240);
+  --accent: oklch(0.3 0.04 35);
+  --accent-foreground: oklch(0.85 0.15 35);
+  --destructive: oklch(0.65 0.22 25);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.3 0.005 240);
+  --input: oklch(0.3 0.005 240);
+  --ring: oklch(0.7 0.22 35);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html, body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@utility shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-muted) 0%,
+    color-mix(in oklch, var(--color-muted) 60%, var(--color-foreground) 5%) 50%,
+    var(--color-muted) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer-slide 1.4s ease-in-out infinite;
+}
+
+@keyframes shimmer-slide {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@utility prose-reddit {
+  & p { margin: 0.4rem 0; line-height: 1.6; }
+  & strong { color: var(--color-foreground); font-weight: 600; }
+  & ul { list-style: disc; padding-left: 1.25rem; margin: 0.4rem 0; }
+  & ol { list-style: decimal; padding-left: 1.25rem; margin: 0.4rem 0; }
+  & li { margin: 0.2rem 0; }
+  & code {
+    background: var(--color-muted);
+    padding: 0.1rem 0.35rem;
+    border-radius: 0.3rem;
+    font-size: 0.875em;
+  }
+  & pre {
+    background: var(--color-muted);
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin: 0.5rem 0;
+  }
+  & a { color: var(--color-primary); text-decoration: underline; }
+  & h1, & h2, & h3 { font-weight: 600; margin: 0.6rem 0 0.3rem; }
+}

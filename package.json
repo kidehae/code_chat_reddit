@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "@nestjs/axios": "^4.0.1",
-    "@nestjs/config": "^4.0.4",
-    "@supabase/supabase-js": "^2.108.1",
-    "axios": "^1.17.0"
-  }
-}

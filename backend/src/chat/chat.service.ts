@@ -4,6 +4,14 @@ import { SupabaseService } from '../supabase/supabase.service';
 import { HfInference } from '@huggingface/inference';
 import Groq from 'groq-sdk';
 
+type AssistantResponse = {
+  notice: string;
+  explanation_points: string[];
+  sources: string[];
+};
+
+type ParsedSource = { title: string; url: string };
+
 @Injectable()
 export class ChatService {
   private readonly logger = new Logger(ChatService.name);
