@@ -1,6 +1,6 @@
-@import "tailwindcss" source(none);
-@source "../src";
-@import "tw-animate-css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @custom-variant dark (&:is(.dark *));
 
@@ -35,63 +35,63 @@
 
 :root {
   --radius: 0.75rem;
-  /* Reddit Light */
-  --background: oklch(0.965 0.005 240); /* #DAE0E6-ish */
-  --surface: oklch(1 0 0); /* #FFFFFF */
-  --surface-foreground: oklch(0.18 0.01 250);
-  --foreground: oklch(0.18 0.01 250);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.01 250);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.01 250);
-  --primary: oklch(0.66 0.22 35); /* Reddit Orange-Red #FF4500 */
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.95 0.005 240);
-  --secondary-foreground: oklch(0.2 0.01 250);
-  --muted: oklch(0.95 0.005 240);
-  --muted-foreground: oklch(0.5 0.01 250);
-  --accent: oklch(0.95 0.02 35);
-  --accent-foreground: oklch(0.66 0.22 35);
-  --destructive: oklch(0.6 0.22 25);
-  --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.9 0.005 240);
-  --input: oklch(0.9 0.005 240);
-  --ring: oklch(0.66 0.22 35);
+  /* Reddit Light - HSL Format */
+  --background: 60 18% 96%;
+  --surface: 0 0% 100%;
+  --surface-foreground: 250 1% 18%;
+  --foreground: 250 1% 18%;
+  --card: 0 0% 100%;
+  --card-foreground: 250 1% 18%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 250 1% 18%;
+  --primary: 17 100% 58%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 240 1% 95%;
+  --secondary-foreground: 250 1% 20%;
+  --muted: 240 1% 95%;
+  --muted-foreground: 240 1% 50%;
+  --accent: 35 100% 90%;
+  --accent-foreground: 17 100% 58%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 240 5% 90%;
+  --input: 240 5% 90%;
+  --ring: 17 100% 58%;
 }
 
 .dark {
-  /* Reddit Dark */
-  --background: oklch(0.13 0.002 240); /* #030303-ish */
-  --surface: oklch(0.205 0.002 240); /* #1A1A1B */
-  --surface-foreground: oklch(0.96 0.003 240);
-  --foreground: oklch(0.96 0.003 240);
-  --card: oklch(0.205 0.002 240);
-  --card-foreground: oklch(0.96 0.003 240);
-  --popover: oklch(0.205 0.002 240);
-  --popover-foreground: oklch(0.96 0.003 240);
-  --primary: oklch(0.7 0.22 35);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.25 0.005 240);
-  --secondary-foreground: oklch(0.96 0.003 240);
-  --muted: oklch(0.25 0.005 240);
-  --muted-foreground: oklch(0.7 0.01 240);
-  --accent: oklch(0.3 0.04 35);
-  --accent-foreground: oklch(0.85 0.15 35);
-  --destructive: oklch(0.65 0.22 25);
-  --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.3 0.005 240);
-  --input: oklch(0.3 0.005 240);
-  --ring: oklch(0.7 0.22 35);
+  /* Reddit Dark - Ultra Dark with Vibrant Accents */
+  --background: 240 0% 3%;
+  --surface: 240 2% 7%;
+  --surface-foreground: 0 0% 100%;
+  --foreground: 0 0% 98%;
+  --card: 240 2% 7%;
+  --card-foreground: 0 0% 100%;
+  --popover: 240 2% 7%;
+  --popover-foreground: 0 0% 100%;
+  --primary: 17 100% 55%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 240 1% 20%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 240 1% 20%;
+  --muted-foreground: 240 1% 65%;
+  --accent: 35 100% 45%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84% 65%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 240 2% 20%;
+  --input: 240 2% 20%;
+  --ring: 17 100% 55%;
 }
 
 @layer base {
   * {
-    border-color: var(--color-border);
+    border-color: hsl(var(--border));
   }
   html, body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
-    font-family: var(--font-sans);
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
 }
@@ -99,9 +99,9 @@
 @utility shimmer {
   background: linear-gradient(
     90deg,
-    var(--color-muted) 0%,
-    color-mix(in oklch, var(--color-muted) 60%, var(--color-foreground) 5%) 50%,
-    var(--color-muted) 100%
+    hsl(var(--muted)) 0%,
+    hsl(var(--muted) / 0.6) 50%,
+    hsl(var(--muted)) 100%
   );
   background-size: 200% 100%;
   animation: shimmer-slide 1.4s ease-in-out infinite;
@@ -114,23 +114,115 @@
 
 @utility prose-reddit {
   & p { margin: 0.4rem 0; line-height: 1.6; }
-  & strong { color: var(--color-foreground); font-weight: 600; }
+  & strong { color: hsl(var(--foreground)); font-weight: 600; }
   & ul { list-style: disc; padding-left: 1.25rem; margin: 0.4rem 0; }
   & ol { list-style: decimal; padding-left: 1.25rem; margin: 0.4rem 0; }
   & li { margin: 0.2rem 0; }
   & code {
-    background: var(--color-muted);
+    background: hsl(var(--muted));
     padding: 0.1rem 0.35rem;
     border-radius: 0.3rem;
     font-size: 0.875em;
   }
   & pre {
-    background: var(--color-muted);
+    background: hsl(var(--muted));
     padding: 0.75rem;
     border-radius: 0.5rem;
     overflow-x: auto;
     margin: 0.5rem 0;
   }
-  & a { color: var(--color-primary); text-decoration: underline; }
+  & a { color: hsl(var(--primary)); text-decoration: underline; }
   & h1, & h2, & h3 { font-weight: 600; margin: 0.6rem 0 0.3rem; }
+}
+
+.app-shell-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  backdrop-filter: blur(16px);
+  background-color: hsl(var(--surface));
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+.app-shell-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: hsl(var(--foreground));
+  text-decoration: none;
+}
+
+.app-shell-brand:hover .app-shell-brand-badge {
+  transform: scale(1.05);
+}
+
+.app-shell-brand-badge {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  font-weight: 700;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.app-shell-brand-text {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.app-shell-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.app-shell-nav-tab {
+  padding: 0 0.75rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: hsl(var(--muted-foreground));
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.app-shell-nav-tab:hover {
+  color: hsl(var(--foreground));
+  background-color: hsl(var(--muted));
+}
+
+.app-shell-nav-tab.active {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+
+.app-shell-theme-toggle {
+  margin-left: 0.25rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: hsl(var(--foreground));
+  background-color: transparent;
+  transition: background-color 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.app-shell-theme-toggle:hover {
+  background-color: hsl(var(--muted));
+}
+
+.app-shell-theme-toggle svg {
+  display: block;
 }
