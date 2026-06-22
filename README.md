@@ -90,9 +90,3 @@ JSON
   "error": "Bad Request"
 }
 
----
-
-### 🔥 Why this README shines:
-* It looks incredibly technical and authoritative to open-source developers or recruiters.
-* It cleanly charts your backend workflows without unnecessary clutter.
-* It documents your **API schemas** and **error catch behavior** so anyone evaluating your portfolio can understand your system within 10 seconds.
